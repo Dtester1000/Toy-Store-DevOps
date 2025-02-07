@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Toy = require('../models/toyModel');
-const authRoutes = require('./auth_route');
 const { authenticateToken } = require('../middlewares/Auth')
 
 
@@ -59,7 +58,7 @@ router.get('/toys/prices', async (req, res) => {
   if (Number(min) > Number(max) || min < 0) return res.status(500).json({message: "min must have a positive value and must be less then max"});
   try {
     const price = await Toy.find({price: {$gte: min } && {$lte: max} }).limit(10).skip(skipn);
-    if ((!price) || price.length < 1) return res.status(404).json({ message: 'No toys in that prices' });
+    if ((!price) || price.length < 1) return res.status(404).json({ message: 'No toys in that price range' });
     res.json(price);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -84,7 +83,6 @@ router.post('/toys',authenticateToken, async (req, res) => {
 
   try {
     const newToy = new Toy(req.body);
-
     const savedToy = await newToy.save();
     res.status(201).json(savedToy);
   } catch (error) {
@@ -105,7 +103,9 @@ router.get('/toys/:id', async (req, res) => {
 
 // UPDATE - PUT (update toy parameters)
 router.put('/toys/:id',authenticateToken, async (req, res) => {
+  
   try {
+  
     const updatedToy = await Toy.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedToy) return res.status(404).json({ message: 'Toy not found' });
     res.json(updatedToy);

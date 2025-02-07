@@ -117,7 +117,10 @@
   "name": "New Toy",
   "info": "Description of the toy",
   "category": "Category",
-  "price": 29.99
+  "price": 29.99,
+  "img_url": "link to url",
+  "user_id": "insert user id"
+  
 }</code></pre>
                 </div>
 
@@ -147,9 +150,9 @@
                     </ul>
                     <h5>Request Body:</h5>
                     <pre><code>{
-                                    "name": "Updated Toy Name",
-                                    "price": 39.99
-                                }
+"name": "Updated Toy Name",
+"price": 39.99
+}
                     </code></pre>
                 </div>
 
@@ -180,10 +183,10 @@
                     <p>Register a new user</p>
                     <h5>Request Body:</h5>
                                 <pre><code>{
-                                            "name": "John Doe",
-                                            "email": "john@example.com",
-                                            "password": "password123"
-                                            }</code></pre>
+"name": "John Doe",
+"email": "john@example.com",
+"password": "password123"
+}</code></pre>
                     <h5>Validation:</h5>
                     <ul>
                         <li>name: string, 2-50 characters, required</li>

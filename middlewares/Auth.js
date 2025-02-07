@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 // Load environment variables
 require('dotenv').config();
 
-const JWT_SECRET = process.env.AUTH_SECRET || 'your_jwt_secret';
+const JWT_SECRET = process.env.AUTH_SECRET || 'another jwt_secret';
 const TOKEN_EXPIRY = '1h'; // Token expires in 1 hour
 
 // Generate JWT token
@@ -26,7 +26,7 @@ const verifyToken = (token) => {
   try {
     return jwt.verify(token, JWT_SECRET);
   } catch (error) {
-    return {message: "error"};
+    return {message: "can't verify this token"};
   }
 };
 
