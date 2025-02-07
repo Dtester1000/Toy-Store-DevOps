@@ -48,7 +48,7 @@ npm install
 - Add the following variables:
   ```
   PORT=5000
-  MONGODB_URI=mongodb://localhost:27017/toystore
+  MONGODB_URI=mongodb://localhost:27017/storedb
   JWT_SECRET=your_jwt_secret_here
   NODE_ENV=production / development
   ```
@@ -69,7 +69,7 @@ npm start
 |--------|----------|-------------|
 | GET    | /api/toys | Get 10 toys (with optional skip parameter) |
 | GET    | /api/toys/count | Get total count of toys |
-| GET    | /api/toys/search | Search toys by name or info |
+| GET    | /api/toys/search?s= | Search toys by name or info |
 | GET    | /api/toys/prices | Get toys within a price range |
 | GET    | /api/toys/category/:catname | Get toys by category |
 | POST   | /api/toys | Create a new toy (requires authentication) |
