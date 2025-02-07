@@ -47,7 +47,7 @@ npm install
 - Create a `.env` file in the root directory
 - Add the following variables:
   ```
-  PORT=3000
+  PORT=5000
   MONGODB_URI=mongodb://localhost:27017/toystore
   JWT_SECRET=your_jwt_secret_here
   NODE_ENV=production / development
@@ -58,7 +58,7 @@ npm install
 1. Start the server:
 npm start
 
-2. Access the API documentation at `http://localhost:3000/api-docs`
+2. Access the API documentation at `http://localhost:5000/`
 3. Use Postman or a similar tool to interact with the API endpoints.
 
 ## 🔗 API Endpoints
@@ -67,23 +67,23 @@ npm start
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET    | /toys | Get 10 toys (with optional skip parameter) |
-| GET    | /toys/count | Get total count of toys |
-| GET    | /toys/search | Search toys by name or info |
-| GET    | /toys/prices | Get toys within a price range |
-| GET    | /toys/category/:catname | Get toys by category |
-| POST   | /toys | Create a new toy (requires authentication) |
-| GET    | /toys/:id | Get a single toy by ID |
-| PUT    | /toys/:id | Update a toy by ID (requires authentication) |
-| DELETE | /toys/:id | Delete a toy by ID (requires authentication) |
+| GET    | /api/toys | Get 10 toys (with optional skip parameter) |
+| GET    | /api/toys/count | Get total count of toys |
+| GET    | /api/toys/search | Search toys by name or info |
+| GET    | /api/toys/prices | Get toys within a price range |
+| GET    | /api/toys/category/:catname | Get toys by category |
+| POST   | /api/toys | Create a new toy (requires authentication) |
+| GET    | /api/toys/:id | Get a single toy by ID |
+| PUT    | /api/toys/:id | Update a toy by ID (requires authentication) |
+| DELETE | /api/toys/:id | Delete a toy by ID (requires authentication) |
 
 ### User Routes
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST   | /register | Register a new user |
-| POST   | /login | Log in a user |
-| POST   | /logout | Log out a user |
+| POST   | /auth/register | Register a new user |
+| POST   | /auth/login | Log in a user |
+| POST   | /auth/logout | Log out a user |
 
 For detailed information on request/response formats, please refer to the API documentation.
 
