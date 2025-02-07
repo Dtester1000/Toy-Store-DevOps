@@ -17,7 +17,6 @@ It provides endpoints for creating, reading, updating, and deleting toy records,
 - [API Endpoints](#-api-endpoints)
 - [Authentication](#-authentication)
 - [Database](#-database)
-- [Testing](#-testing)
 - [Contributing](#-contributing)
 - [License](#-license)
 - [Author](#-author)
