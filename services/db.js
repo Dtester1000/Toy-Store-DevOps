@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/storedb', {
+    await mongoose.connect('mongodb://host.docker.internal:27017/storedb', {
       
     });
     console.log('MongoDB connected successfully');
