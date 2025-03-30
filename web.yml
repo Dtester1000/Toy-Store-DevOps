@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: web
-        image: docker.io/test3090/toy-store:0.0.2  # Replace with your built image
+        image: docker.io/test3090/toy-store:0.0.2  
         ports:
         - containerPort: 5000
         env:
         - name: MONGO_URI
-          value: "mongodb://mongo:27017/storedb"  # Connect to MongoDB service
+          value: "mongodb://mongo:27017/storedb" 
 ---
 apiVersion: v1
 kind: Service
@@ -34,4 +34,4 @@ spec:
   ports:
   - port: 5000
     targetPort: 5000
-    nodePort: 30000  # Explicit node port for web
+    nodePort: 30000  # Explicit node port for web service
