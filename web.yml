@@ -1,0 +1,37 @@
+# web.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: docker.io/test3090/toy-store:0.0.2  # Replace with your built image
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo:27017/storedb"  # Connect to MongoDB service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30000  # Explicit node port for web
