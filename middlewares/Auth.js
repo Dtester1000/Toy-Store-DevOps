@@ -30,7 +30,7 @@ const verifyToken = (token) => {
   }
 };
 
-// Middleware to authenticate token
+// Authenticate token
 const authenticateToken = (req, res, next) => {
   const token = req.cookies.access_token || req.headers['authorization']?.split(' ')[1];
 

@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-
-    "start": "node app.js"
-   
+    "start": "node app.js",
+    "test": "jest"
   },
-
   "keywords": [],
   "author": "",
   "license": "MIT",
@@ -20,7 +18,10 @@
     "express": "^4.21.2",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "license": "^1.0.3",
+    "license": "^0.0.3",
     "mongoose": "^8.9.7"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
