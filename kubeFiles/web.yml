@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: docker.io/test3090/toy-store:0.0.5
+        image: docker.io/test3090/toy-store:0.0.2
         ports:
         - containerPort: 5000
         env:
