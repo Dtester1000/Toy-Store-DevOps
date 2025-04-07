@@ -13,7 +13,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi # Adjust storage size as needed
+      storage: 2Gi 
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -21,7 +21,7 @@ metadata:
   name: jenkins-deployment
   namespace: jenkins
 spec:
-  replicas: 1 # Single instance of Jenkins for now; scale as needed.
+  replicas: 1 
   selector:
     matchLabels:
       app: jenkins
@@ -32,20 +32,20 @@ spec:
     spec:
       containers:
         - name: jenkins-container
-          image: jenkins/jenkins:lts # Use the latest LTS version of Jenkins.
+          image: jenkins/jenkins:lts 
           ports:
-            - containerPort: 8080 # Jenkins UI port.
-            - containerPort: 50000 # Jenkins agent communication port.
+            - containerPort: 8080 
+            - containerPort: 50000 
           resources:
             requests:
-              memory: "512Mi" # Minimum memory request.
-              cpu: "500m"     # Minimum CPU request.
+              memory: "512Mi" 
+              cpu: "500m"     
             limits:
-              memory: "2Gi"   # Maximum memory limit.
-              cpu: "2"        # Maximum CPU limit.
+              memory: "2Gi"   
+              cpu: "2"        
           volumeMounts:
             - name: jenkins-data
-              mountPath: /var/jenkins_home # Default Jenkins data directory.
+              mountPath: /var/jenkins_home 
       volumes:
         - name: jenkins-data
           persistentVolumeClaim:
@@ -61,10 +61,10 @@ spec:
   type: LoadBalancer
   ports:
     - name: jenkins-ui
-      port: 8080 # External port for Jenkins UI
-      targetPort: 8080 # Internal port for Jenkins UI
+      port: 8080 
+      targetPort: 8080 
     - name: jenkins-agent
-      port: 50000 # Jenkins agent port
+      port: 50000
       targetPort: 5050
   selector:
     app: jenkins

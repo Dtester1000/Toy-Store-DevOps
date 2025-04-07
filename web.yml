@@ -1,4 +1,4 @@
-# web.yaml
+# web.yml
 ---
 apiVersion: apps/v1
 kind: Deployment

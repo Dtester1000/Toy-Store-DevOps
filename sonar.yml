@@ -1,4 +1,4 @@
-# sonarqube.yaml
+# sonarqube.yml
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

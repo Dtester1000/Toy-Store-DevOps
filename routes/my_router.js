@@ -2,7 +2,23 @@ const express = require('express');
 const router = express.Router();
 const Toy = require('../models/toyModel');
 const { authenticateToken } = require('../middlewares/Auth')
+const { collectDefaultMetrics, register } = require('prom-client');
+collectDefaultMetrics({ timeout: 5000 });
 
+
+router.get('/metrics', async (req, res) => {
+  try {
+    res.set('Content-Type', register.contentType);
+    const metrics = await register.metrics();
+    res.send(metrics);
+  } catch (err) {
+    console.error('Error collecting metrics:', err);
+    res.status(500).json({ 
+      error: 'Metrics collection failed',
+      details: err.message 
+    });
+  }
+});
 
 // READ - GET (10 toys)
 router.get('/toys', async (req, res) => {
