@@ -41,3 +41,4 @@ scrape_configs:
     - localhost:8080
     - localhost:5000
     - localhost:9100
+#test
