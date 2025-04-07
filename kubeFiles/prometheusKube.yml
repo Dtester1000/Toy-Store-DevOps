@@ -37,7 +37,7 @@ data:
         scheme: http
         static_configs:
           - targets:
-              - node-exporter:9100
+              - node-exporter-service:9100
               
       - job_name: web
         scrape_interval: 15s
