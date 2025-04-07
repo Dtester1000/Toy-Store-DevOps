@@ -1,6 +1,6 @@
 services:
   web:
-    image: "docker.io/test3090/toy-store:0.0.1"
+    image: "toy-store:0.10"
     ports:
       - "5000:5000"
     volumes:
@@ -11,44 +11,32 @@ services:
     mem_limit: 512m       
     mem_reservation: 128m 
     cpus: '0.5'
-    logging:
-      driver: loki
-      options:
-        loki-url: "http://loki:3100/loki/api/v1/push"
-
+    
   mongo:
     image: "mongo:latest"
     ports:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    restart: unless-stopped
     networks:
       - app-network
-    restart: unless-stopped
     mem_limit: 1000m      
     mem_reservation: 128m
     cpus: '1'
-    logging:
-      driver: loki
-      options:
-        loki-url: "http://loki:3100/loki/api/v1/push"
-
-  #jenkins:
-  #  image: "jenkins/jenkins:latest"
-  #  ports:
-  #    - "8080:8080"
-  #  volumes:
-  #    - jenkins_home:/var/jenkins_home
-  #  networks:
-  #    - app-network
-  #  restart: unless-stopped
-  #  mem_limit: 1000m       
-  #  mem_reservation: 128m 
-  #  cpus: '1'
-  #  logging:
-  #    driver: loki
-  #    options:
-  #      loki-url: "http://loki:3100/loki/api/v1/push"
+  
+  jenkins:
+    image: "jenkins/jenkins:latest"
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    networks:
+      - app-network
+    restart: unless-stopped
+    mem_limit: 1000m       
+    mem_reservation: 128m 
+    cpus: '1'
 
   Grafana:
     image: grafana/grafana:latest
@@ -91,45 +79,14 @@ services:
       - '--path.rootfs=/host'
       - '--web.listen-address=:9100'
       - '--web.telemetry-path=/metrics'
-
-  loki:
-    image: grafana/loki:latest
-    container_name: loki
-    ports:
-      - "3100:3100"
-    networks:
-      - app-network
-    volumes:
-      - ./loki-config.yml:/mnt/config/loki-config.yml
-      - ./loki-data:/var/lib/loki
-    command: -config.file=/mnt/config/loki-config.yml
-    restart: unless-stopped
-    mem_limit: 1000m
-    mem_reservation: 128m
-    cpus: '1'
-
-  promtail:
-    image: grafana/promtail:latest
-    container_name: promtail
-    volumes:
-      - ./promtail-config.yml:/mnt/config/promtail-config.yml
-      - /var/log:/var/log
-    command: -config.file=/mnt/config/promtail-config.yml
-    depends_on:
-      - loki
-    networks:
-      - app-network
-    restart: unless-stopped
-    mem_limit: 1000m
-    mem_reservation: 128m
-    cpus: '1'
-
+      
+  
 networks:
   app-network:
     driver: bridge   
 
 volumes:
-#  jenkins_home:
+  jenkins_home:
   toy-store-vol:
   mongo_data:
   grafana_data:

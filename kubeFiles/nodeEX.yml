@@ -43,7 +43,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: node-exporter-service
+  name: node-exporter
 spec:
   type: LoadBalancer
   selector:
