@@ -31,5 +31,5 @@ jobs:
 
       # Step 5: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
-        run: docker push test3090/toy-store:0.10
+        run: docker push test3090/toy-store:0.11
 
